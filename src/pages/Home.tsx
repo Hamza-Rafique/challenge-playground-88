@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { CreateAccountDialog } from "@/components/CreateAccountDialog";
+import { SignInDialog } from "@/components/SignInDialog";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -18,15 +19,7 @@ const Home = () => {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <CreateAccountDialog />
-          
-          <Button 
-            variant="outline" 
-            size="lg"
-            className="min-w-[200px]"
-            onClick={() => console.log("Sign in clicked")}
-          >
-            Sign In
-          </Button>
+          <SignInDialog />
         </div>
 
         <Button 

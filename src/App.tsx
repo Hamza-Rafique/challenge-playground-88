@@ -9,6 +9,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Modules from "./pages/Modules";
 import ModulePage from "./pages/ModulePage";
+import LearningPage from "./pages/LearningPage";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +26,7 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/modules" element={<Modules />} />
           <Route path="/module/:moduleId" element={<ModulePage />} />
+          <Route path="/learning" element={<LearningPage />} />
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
