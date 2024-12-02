@@ -4,9 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { useToast } from "@/components/ui/use-toast";
 import Editor from "@monaco-editor/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-// Mock data - in a real app, this would come from an API
 const mockChallenges = {
   "data-structures": [
     {
@@ -52,9 +51,24 @@ const ModulePage = () => {
   const challenges = mockChallenges[moduleId as keyof typeof mockChallenges] || [];
   const currentChallenge = challenges[currentChallengeIndex];
 
+  // Initialize code when challenge or language changes
+  useEffect(() => {
+    if (currentChallenge) {
+      setCode(currentChallenge.initialCode[currentLanguage]);
+    }
+  }, [currentChallenge, currentLanguage]);
+
+  // Reset state when moduleId changes
+  useEffect(() => {
+    setCurrentChallengeIndex(0);
+    setProgress(0);
+  }, [moduleId]);
+
   const handleLanguageChange = (newLanguage: "javascript" | "python" | "typescript") => {
     setCurrentLanguage(newLanguage);
-    setCode(currentChallenge.initialCode[newLanguage]);
+    if (currentChallenge) {
+      setCode(currentChallenge.initialCode[newLanguage]);
+    }
   };
 
   const runTests = (userCode: string) => {
@@ -100,6 +114,8 @@ const ModulePage = () => {
     if (currentChallengeIndex < challenges.length - 1) {
       setCurrentChallengeIndex(prev => prev + 1);
       setProgress(0);
+      // Reset code to initial state for new challenge
+      setCode(challenges[currentChallengeIndex + 1].initialCode[currentLanguage]);
     } else {
       toast({
         title: "Congratulations! 🎉",
@@ -109,8 +125,15 @@ const ModulePage = () => {
     }
   };
 
-  if (!currentChallenge) {
-    return <div className="container py-8">Module not found</div>;
+  if (!currentChallenge || !challenges.length) {
+    return (
+      <div className="container py-8">
+        <div className="text-center">
+          <h2 className="text-2xl font-bold text-primary-foreground mb-4">Module not found</h2>
+          <Button onClick={() => navigate("/modules")}>Return to Modules</Button>
+        </div>
+      </div>
+    );
   }
 
   return (
