@@ -1,10 +1,10 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
 import { useToast } from "@/components/ui/use-toast";
-import Editor from "@monaco-editor/react";
 import { useState, useEffect } from "react";
+import CodeEditor from "../components/CodeEditor";
+import ChallengeInfo from "../components/ChallengeInfo";
+import LanguageSelector from "../components/LanguageSelector";
 
 const mockChallenges = {
   "data-structures": [
@@ -48,17 +48,16 @@ const ModulePage = () => {
   const [code, setCode] = useState("");
   const [progress, setProgress] = useState(0);
 
-  const challenges = mockChallenges[moduleId as keyof typeof mockChallenges] || [];
+  const formattedModuleId = moduleId?.toLowerCase().replace(/\s+/g, '-');
+  const challenges = mockChallenges[formattedModuleId as keyof typeof mockChallenges] || [];
   const currentChallenge = challenges[currentChallengeIndex];
 
-  // Initialize code when challenge or language changes
   useEffect(() => {
     if (currentChallenge) {
       setCode(currentChallenge.initialCode[currentLanguage]);
     }
   }, [currentChallenge, currentLanguage]);
 
-  // Reset state when moduleId changes
   useEffect(() => {
     setCurrentChallengeIndex(0);
     setProgress(0);
@@ -71,11 +70,9 @@ const ModulePage = () => {
     }
   };
 
-  const runTests = (userCode: string) => {
+  const runTests = () => {
     try {
-      // Create a safe environment to run the code
-      const testFunction = new Function("return " + userCode)();
-      
+      const testFunction = new Function("return " + code)();
       let passedTests = 0;
       const totalTests = currentChallenge.testCases.length;
 
@@ -114,7 +111,6 @@ const ModulePage = () => {
     if (currentChallengeIndex < challenges.length - 1) {
       setCurrentChallengeIndex(prev => prev + 1);
       setProgress(0);
-      // Reset code to initial state for new challenge
       setCode(challenges[currentChallengeIndex + 1].initialCode[currentLanguage]);
     } else {
       toast({
@@ -143,69 +139,27 @@ const ModulePage = () => {
           <h1 className="text-4xl font-bold text-primary-foreground">
             {moduleId?.charAt(0).toUpperCase() + moduleId?.slice(1)}
           </h1>
-          <div className="flex gap-2">
-            <Button
-              variant="outline"
-              onClick={() => handleLanguageChange("javascript")}
-              className={currentLanguage === "javascript" ? "bg-primary text-primary-foreground" : ""}
-            >
-              JavaScript
-            </Button>
-            <Button
-              variant="outline"
-              onClick={() => handleLanguageChange("python")}
-              className={currentLanguage === "python" ? "bg-primary text-primary-foreground" : ""}
-            >
-              Python
-            </Button>
-            <Button
-              variant="outline"
-              onClick={() => handleLanguageChange("typescript")}
-              className={currentLanguage === "typescript" ? "bg-primary text-primary-foreground" : ""}
-            >
-              TypeScript
-            </Button>
-          </div>
+          <LanguageSelector
+            currentLanguage={currentLanguage}
+            onLanguageChange={handleLanguageChange}
+          />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <Card className="bg-card p-6">
-            <h2 className="text-xl font-semibold text-primary-foreground mb-4">
-              {currentChallenge.title}
-            </h2>
-            <p className="text-muted-foreground mb-4">
-              {currentChallenge.description}
-            </p>
-            <div className="mt-4">
-              <h3 className="font-semibold mb-2">Progress</h3>
-              <Progress value={progress} className="w-full" />
-            </div>
-          </Card>
-
-          <Card className="bg-card p-6">
-            <div className="h-[400px] mb-4">
-              <Editor
-                height="100%"
-                defaultLanguage={currentLanguage}
-                defaultValue={currentChallenge.initialCode[currentLanguage]}
-                theme="vs-dark"
-                onChange={(value) => setCode(value || "")}
-                options={{
-                  minimap: { enabled: false },
-                  fontSize: 14,
-                }}
-              />
-            </div>
-            <div className="flex justify-between">
-              <Button onClick={() => runTests(code)}>Run Tests</Button>
-              <Button 
-                onClick={handleNextChallenge}
-                disabled={progress !== 100}
-              >
-                {currentChallengeIndex < challenges.length - 1 ? "Next Challenge" : "Complete Module"}
-              </Button>
-            </div>
-          </Card>
+          <ChallengeInfo
+            title={currentChallenge.title}
+            description={currentChallenge.description}
+            progress={progress}
+          />
+          <CodeEditor
+            code={code}
+            language={currentLanguage}
+            onCodeChange={(value) => setCode(value || "")}
+            onRunTests={runTests}
+            onNextChallenge={handleNextChallenge}
+            isComplete={progress === 100}
+            isLastChallenge={currentChallengeIndex === challenges.length - 1}
+          />
         </div>
       </div>
     </div>

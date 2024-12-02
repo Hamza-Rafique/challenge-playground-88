@@ -25,10 +25,14 @@ const ModuleCard = ({ title, description, taskCount, difficulty }: ModuleCardPro
     }
   };
 
+  const formatUrlTitle = (title: string) => {
+    return title.toLowerCase().replace(/\s+/g, '-');
+  };
+
   return (
     <Card 
       className="hover:scale-105 transition-transform cursor-pointer bg-card"
-      onClick={() => navigate(`/module/${title.toLowerCase()}`)}
+      onClick={() => navigate(`/module/${formatUrlTitle(title)}`)}
     >
       <CardHeader>
         <div className="flex justify-between items-center">

@@ -1,45 +1,50 @@
-import { useState } from "react";
+import Editor from "@monaco-editor/react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/components/ui/use-toast";
 
 interface CodeEditorProps {
-  initialCode: string;
-  onRun: (code: string) => void;
+  code: string;
+  language: string;
+  onCodeChange: (value: string | undefined) => void;
+  onRunTests: () => void;
+  onNextChallenge: () => void;
+  isComplete: boolean;
+  isLastChallenge: boolean;
 }
 
-const CodeEditor = ({ initialCode, onRun }: CodeEditorProps) => {
-  const [code, setCode] = useState(initialCode);
-  const { toast } = useToast();
-
-  const handleRun = () => {
-    try {
-      onRun(code);
-      toast({
-        title: "Code executed successfully!",
-        variant: "default",
-      });
-    } catch (error) {
-      toast({
-        title: "Error executing code",
-        description: error instanceof Error ? error.message : "Unknown error occurred",
-        variant: "destructive",
-      });
-    }
-  };
-
+const CodeEditor = ({
+  code,
+  language,
+  onCodeChange,
+  onRunTests,
+  onNextChallenge,
+  isComplete,
+  isLastChallenge,
+}: CodeEditorProps) => {
   return (
-    <Card className="bg-card p-4 h-full flex flex-col">
-      <div className="flex justify-between items-center mb-4">
-        <h3 className="text-lg font-semibold text-primary-foreground">Code Editor</h3>
-        <Button onClick={handleRun}>Run Code</Button>
+    <Card className="bg-card p-6">
+      <div className="h-[400px] mb-4">
+        <Editor
+          height="100%"
+          defaultLanguage={language}
+          value={code}
+          theme="vs-dark"
+          onChange={onCodeChange}
+          options={{
+            minimap: { enabled: false },
+            fontSize: 14,
+          }}
+        />
       </div>
-      <textarea
-        value={code}
-        onChange={(e) => setCode(e.target.value)}
-        className="flex-1 bg-background text-foreground p-4 font-mono text-sm resize-none rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-        spellCheck="false"
-      />
+      <div className="flex justify-between">
+        <Button onClick={onRunTests}>Run Tests</Button>
+        <Button 
+          onClick={onNextChallenge}
+          disabled={!isComplete}
+        >
+          {isLastChallenge ? "Complete Module" : "Next Challenge"}
+        </Button>
+      </div>
     </Card>
   );
 };
