@@ -36,6 +36,36 @@ const mockChallenges = {
         { input: [10, 2, 8], expected: 10 }
       ]
     }
+  ],
+  "algorithms": [
+    {
+      id: 1,
+      title: "Binary Search",
+      description: "Implement binary search algorithm to find a target number in a sorted array.",
+      initialCode: {
+        javascript: "function binarySearch(arr, target) {\n  // Your code here\n  return -1;\n}",
+        python: "def binary_search(arr, target):\n    # Your code here\n    return -1",
+        typescript: "function binarySearch(arr: number[], target: number): number {\n  // Your code here\n  return -1;\n}"
+      },
+      testCases: [
+        { input: [[1, 2, 3, 4, 5], 3], expected: 2 },
+        { input: [[1, 3, 5, 7, 9], 7], expected: 3 }
+      ]
+    },
+    {
+      id: 2,
+      title: "Bubble Sort",
+      description: "Implement the bubble sort algorithm to sort an array in ascending order.",
+      initialCode: {
+        javascript: "function bubbleSort(arr) {\n  // Your code here\n  return arr;\n}",
+        python: "def bubble_sort(arr):\n    # Your code here\n    return arr",
+        typescript: "function bubbleSort(arr: number[]): number[] {\n  // Your code here\n  return arr;\n}"
+      },
+      testCases: [
+        { input: [[64, 34, 25, 12, 22, 11, 90]], expected: [11, 12, 22, 25, 34, 64, 90] },
+        { input: [[5, 2, 8, 1, 9]], expected: [1, 2, 5, 8, 9] }
+      ]
+    }
   ]
 };
 
