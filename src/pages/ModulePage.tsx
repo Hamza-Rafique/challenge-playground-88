@@ -7,63 +7,113 @@ import ChallengeInfo from "../components/ChallengeInfo";
 import LanguageSelector from "../components/LanguageSelector";
 
 const mockChallenges = {
-  "data-structures": [
+  "linux-fundamentals": [
     {
       id: 1,
-      title: "Array Reversal",
-      description: "Write a function that reverses an array without using built-in methods.",
+      title: "File System Navigation",
+      description: "Practice essential Linux commands for navigating and managing files.",
       initialCode: {
-        javascript: "function reverseArray(arr) {\n  // Your code here\n  return arr;\n}",
-        python: "def reverse_array(arr):\n    # Your code here\n    return arr",
-        typescript: "function reverseArray(arr: number[]): number[] {\n  // Your code here\n  return arr;\n}"
+        javascript: "// Write shell commands here\n",
+        python: "# Write shell commands here\n",
+        typescript: "// Write shell commands here\n"
       },
       testCases: [
-        { input: [1, 2, 3], expected: [3, 2, 1] },
-        { input: [5, 4], expected: [4, 5] }
+        { input: "ls -la", expected: "Successfully listed files" },
+        { input: "cd /home", expected: "Changed directory" }
       ]
     },
     {
       id: 2,
-      title: "Find Maximum",
-      description: "Write a function that finds the maximum number in an array.",
+      title: "User Management",
+      description: "Learn to manage users and permissions in Linux.",
       initialCode: {
-        javascript: "function findMax(arr) {\n  // Your code here\n}",
-        python: "def find_max(arr):\n    # Your code here",
-        typescript: "function findMax(arr: number[]): number {\n  // Your code here\n}"
+        javascript: "// Write user management commands\n",
+        python: "# Write user management commands\n",
+        typescript: "// Write user management commands\n"
       },
       testCases: [
-        { input: [1, 5, 3], expected: 5 },
-        { input: [10, 2, 8], expected: 10 }
+        { input: "useradd newuser", expected: "User created" },
+        { input: "chmod 755 file.txt", expected: "Permissions updated" }
       ]
     }
   ],
-  "algorithms": [
+  "git-version-control": [
     {
       id: 1,
-      title: "Binary Search",
-      description: "Implement binary search algorithm to find a target number in a sorted array.",
+      title: "Git Basics",
+      description: "Practice fundamental Git commands and workflows.",
       initialCode: {
-        javascript: "function binarySearch(arr, target) {\n  // Your code here\n  return -1;\n}",
-        python: "def binary_search(arr, target):\n    # Your code here\n    return -1",
-        typescript: "function binarySearch(arr: number[], target: number): number {\n  // Your code here\n  return -1;\n}"
+        javascript: "// Write git commands here\n",
+        python: "# Write git commands here\n",
+        typescript: "// Write git commands here\n"
       },
       testCases: [
-        { input: [[1, 2, 3, 4, 5], 3], expected: 2 },
-        { input: [[1, 3, 5, 7, 9], 7], expected: 3 }
+        { input: "git init", expected: "Repository initialized" },
+        { input: "git add .", expected: "Files staged" }
       ]
-    },
+    }
+  ],
+  "ci-cd-pipeline": [
     {
-      id: 2,
-      title: "Bubble Sort",
-      description: "Implement the bubble sort algorithm to sort an array in ascending order.",
+      id: 1,
+      title: "Jenkins Pipeline",
+      description: "Create a basic Jenkins pipeline for automated testing.",
       initialCode: {
-        javascript: "function bubbleSort(arr) {\n  // Your code here\n  return arr;\n}",
-        python: "def bubble_sort(arr):\n    # Your code here\n    return arr",
-        typescript: "function bubbleSort(arr: number[]): number[] {\n  // Your code here\n  return arr;\n}"
+        javascript: "// Write Jenkinsfile content\n",
+        python: "# Write Jenkinsfile content\n",
+        typescript: "// Write Jenkinsfile content\n"
       },
       testCases: [
-        { input: [[64, 34, 25, 12, 22, 11, 90]], expected: [11, 12, 22, 25, 34, 64, 90] },
-        { input: [[5, 2, 8, 1, 9]], expected: [1, 2, 5, 8, 9] }
+        { input: "pipeline { }", expected: "Pipeline created" },
+        { input: "stage('Build')", expected: "Stage added" }
+      ]
+    }
+  ],
+  "docker-containers": [
+    {
+      id: 1,
+      title: "Dockerfile Creation",
+      description: "Write a Dockerfile for a web application.",
+      initialCode: {
+        javascript: "// Write Dockerfile commands\n",
+        python: "# Write Dockerfile commands\n",
+        typescript: "// Write Dockerfile commands\n"
+      },
+      testCases: [
+        { input: "FROM node:14", expected: "Base image set" },
+        { input: "COPY . .", expected: "Files copied" }
+      ]
+    }
+  ],
+  "kubernetes": [
+    {
+      id: 1,
+      title: "Pod Configuration",
+      description: "Create and configure Kubernetes pods.",
+      initialCode: {
+        javascript: "// Write K8s manifest\n",
+        python: "# Write K8s manifest\n",
+        typescript: "// Write K8s manifest\n"
+      },
+      testCases: [
+        { input: "kind: Pod", expected: "Pod defined" },
+        { input: "containers:", expected: "Containers configured" }
+      ]
+    }
+  ],
+  "infrastructure-as-code": [
+    {
+      id: 1,
+      title: "Terraform Resources",
+      description: "Define infrastructure resources using Terraform.",
+      initialCode: {
+        javascript: "// Write Terraform configuration\n",
+        python: "# Write Terraform configuration\n",
+        typescript: "// Write Terraform configuration\n"
+      },
+      testCases: [
+        { input: "resource \"aws_instance\"", expected: "Resource defined" },
+        { input: "provider \"aws\"", expected: "Provider configured" }
       ]
     }
   ]

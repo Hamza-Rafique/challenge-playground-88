@@ -7,28 +7,28 @@ import { Badge } from "@/components/ui/badge"
 import { Flame, Award, BookOpen, Clock, Trophy } from "lucide-react"
 
 const LearningPage = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   // This would normally come from an API
   const mockData = {
     progress: 65,
     streak: 7,
     recentActivities: [
-      { id: 1, title: "Completed Array Basics", time: "2 hours ago" },
-      { id: 2, title: "Started Linked Lists", time: "Yesterday" },
-      { id: 3, title: "Earned Algorithm Badge", time: "2 days ago" },
+      { id: 1, title: "Completed Linux File System Module", time: "2 hours ago" },
+      { id: 2, title: "Started Git Branching", time: "Yesterday" },
+      { id: 3, title: "Earned Docker Badge", time: "2 days ago" },
     ],
     achievements: [
-      { id: 1, title: "Quick Learner", description: "Complete 5 modules" },
-      { id: 2, title: "Code Warrior", description: "7-day streak" },
-      { id: 3, title: "Problem Solver", description: "Solve 10 challenges" },
+      { id: 1, title: "Linux Master", description: "Complete Linux Fundamentals" },
+      { id: 2, title: "Git Expert", description: "7-day Git learning streak" },
+      { id: 3, title: "Container Pro", description: "Deploy 10 containers" },
     ],
     recommendedModules: [
-      { id: 1, title: "Data Structures", difficulty: "Beginner" },
-      { id: 2, title: "Algorithms", difficulty: "Intermediate" },
-      { id: 3, title: "System Design", difficulty: "Advanced" },
+      { id: 1, title: "Linux Fundamentals", difficulty: "Beginner" },
+      { id: 2, title: "Docker Containers", difficulty: "Intermediate" },
+      { id: 3, title: "Kubernetes", difficulty: "Advanced" },
     ],
-  }
+  };
 
   return (
     <div className="min-h-screen bg-background p-8">
