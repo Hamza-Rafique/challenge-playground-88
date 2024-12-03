@@ -44,6 +44,17 @@ const Header = () => {
     navigate("/");
   };
 
+  const handleLoginClick = () => {
+    // For demo purposes, set demo user
+    localStorage.setItem("demoUser", "demo");
+    setIsLoggedIn(true);
+    navigate("/learning");
+    toast({
+      title: "Logged in successfully",
+      description: "Welcome back!",
+    });
+  };
+
   return (
     <header className="w-full bg-primary shadow-sm mb-8 fixed top-0 z-50">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -70,30 +81,37 @@ const Header = () => {
           </div>
 
           <div className="flex items-center">
-            {isLoggedIn ? (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="relative h-10 w-10 rounded-full">
-                    <UserRound className="h-6 w-6 text-white" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-56" align="end">
-                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem className="flex items-center">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" className="relative h-10 w-10 rounded-full">
+                  <UserRound className="h-6 w-6 text-white" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56" align="end">
+                {isLoggedIn ? (
+                  <>
+                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem className="flex items-center">
+                      <UserRound className="mr-2 h-4 w-4" />
+                      <span>{userName}</span>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem 
+                      className="flex items-center text-red-600 focus:text-red-600" 
+                      onClick={handleLogout}
+                    >
+                      <LogOut className="mr-2 h-4 w-4" />
+                      <span>Log out</span>
+                    </DropdownMenuItem>
+                  </>
+                ) : (
+                  <DropdownMenuItem onClick={handleLoginClick}>
                     <UserRound className="mr-2 h-4 w-4" />
-                    <span>{userName}</span>
+                    <span>Log in</span>
                   </DropdownMenuItem>
-                  <DropdownMenuItem 
-                    className="flex items-center text-red-600 focus:text-red-600" 
-                    onClick={handleLogout}
-                  >
-                    <LogOut className="mr-2 h-4 w-4" />
-                    <span>Log out</span>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            ) : null}
+                )}
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </div>
       </nav>
