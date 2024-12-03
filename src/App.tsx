@@ -20,14 +20,16 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/modules" element={<Modules />} />
-          <Route path="/module/:moduleId" element={<ModulePage />} />
-          <Route path="/learning" element={<LearningPage />} />
-        </Routes>
+        <div className="pt-24"> {/* Added padding-top to account for fixed header */}
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/modules" element={<Modules />} />
+            <Route path="/module/:moduleId" element={<ModulePage />} />
+            <Route path="/learning" element={<LearningPage />} />
+          </Routes>
+        </div>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
