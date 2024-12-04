@@ -21,7 +21,20 @@ const moduleSchema = new mongoose.Schema({
   order: {
     type: Number,
     required: true,
-  }
+  },
+  difficulty: {
+    type: String,
+    required: true,
+    enum: ['Beginner', 'Intermediate', 'Advanced'],
+  },
+  tasks: [{
+    title: String,
+    description: String,
+    testCases: [{
+      input: String,
+      expected: String
+    }]
+  }]
 }, { timestamps: true });
 
 module.exports = mongoose.model('Module', moduleSchema);
