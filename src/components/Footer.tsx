@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Facebook, Twitter, Linkedin, Youtube, Discord, Github } from "lucide-react";
+import { Facebook, Twitter, Linkedin, Youtube, Github } from "lucide-react";
 import { Logo } from "./Logo";
 import { Separator } from "./ui/separator";
 
@@ -87,14 +87,11 @@ const Footer = () => {
                 <Youtube className="h-5 w-5" />
               </a>
               <a href="#" className="text-muted-foreground hover:text-primary">
-                <Discord className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-primary">
                 <Github className="h-5 w-5" />
               </a>
             </div>
             <p className="text-muted-foreground">
-              Join our Discord community for real-time discussions and support.
+              Join our community for real-time discussions and support.
             </p>
           </div>
         </div>

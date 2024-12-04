@@ -13,6 +13,7 @@ import ModulePage from "./pages/ModulePage";
 import LearningPage from "./pages/LearningPage";
 import Forum from "./pages/Forum";
 import Leaderboard from "./pages/Leaderboard";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
         <div className="min-h-screen flex flex-col">
           <Header />
           <main className="flex-grow pt-24">
