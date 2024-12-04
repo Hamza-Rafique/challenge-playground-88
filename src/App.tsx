@@ -10,6 +10,8 @@ import Contact from "./pages/Contact";
 import Modules from "./pages/Modules";
 import ModulePage from "./pages/ModulePage";
 import LearningPage from "./pages/LearningPage";
+import Forum from "./pages/Forum";
+import Leaderboard from "./pages/Leaderboard";
 
 const queryClient = new QueryClient();
 
@@ -20,7 +22,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Header />
-        <div className="pt-24"> {/* Added padding-top to account for fixed header */}
+        <div className="pt-24">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
@@ -28,6 +30,8 @@ const App = () => (
             <Route path="/modules" element={<Modules />} />
             <Route path="/module/:moduleId" element={<ModulePage />} />
             <Route path="/learning" element={<LearningPage />} />
+            <Route path="/forum" element={<Forum />} />
+            <Route path="/leaderboard" element={<Leaderboard />} />
           </Routes>
         </div>
       </BrowserRouter>

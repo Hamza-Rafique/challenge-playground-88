@@ -8,7 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { UserRound, LogOut } from "lucide-react";
+import { UserRound, LogOut, MessageSquare, Trophy } from "lucide-react";
 import { useToast } from "./ui/use-toast";
 import { useState, useEffect } from "react";
 
@@ -16,16 +16,13 @@ const Header = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userName, setUserName] = useState("Demo User"); // This would come from your auth system
+  const [userName, setUserName] = useState("Demo User");
 
-  // Simulate checking login status - replace with your actual auth logic
   useEffect(() => {
     const checkLoginStatus = () => {
-      // For demo purposes, we'll check if we have a "demo" user
       const isDemo = localStorage.getItem("demoUser") === "demo";
       setIsLoggedIn(isDemo);
       
-      // Redirect to learning page if logged in
       if (isDemo && window.location.pathname === "/") {
         navigate("/learning");
       }
@@ -45,7 +42,6 @@ const Header = () => {
   };
 
   const handleLoginClick = () => {
-    // For demo purposes, set demo user
     localStorage.setItem("demoUser", "demo");
     setIsLoggedIn(true);
     navigate("/learning");
@@ -77,6 +73,20 @@ const Header = () => {
               className="text-white hover:text-gray-200 px-3 py-2 rounded-md text-sm font-medium"
             >
               Contact Us
+            </Link>
+            <Link 
+              to="/forum" 
+              className="text-white hover:text-gray-200 px-3 py-2 rounded-md text-sm font-medium flex items-center gap-2"
+            >
+              <MessageSquare className="h-4 w-4" />
+              Forum
+            </Link>
+            <Link 
+              to="/leaderboard" 
+              className="text-white hover:text-gray-200 px-3 py-2 rounded-md text-sm font-medium flex items-center gap-2"
+            >
+              <Trophy className="h-4 w-4" />
+              Leaderboard
             </Link>
           </div>
 
