@@ -11,6 +11,7 @@ import {
 import { UserRound, LogOut, MessageSquare, Trophy, Home, Info, Mail } from "lucide-react";
 import { useToast } from "./ui/use-toast";
 import { useState, useEffect } from "react";
+import { Logo } from "./Logo";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -55,42 +56,47 @@ const Header = () => {
     <header className="w-full bg-primary shadow-sm mb-8 fixed top-0 z-50">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
-          <div className="flex space-x-8 items-center">
-            <Link 
-              to="/" 
-              className="text-white hover:text-gray-200 px-3 py-2 rounded-md text-sm font-medium flex items-center gap-2"
-            >
-              <Home className="h-4 w-4" />
-              Home
+          <div className="flex items-center">
+            <Link to="/" className="mr-8">
+              <Logo />
             </Link>
-            <Link 
-              to="/about" 
-              className="text-white hover:text-gray-200 px-3 py-2 rounded-md text-sm font-medium flex items-center gap-2"
-            >
-              <Info className="h-4 w-4" />
-              About
-            </Link>
-            <Link 
-              to="/contact" 
-              className="text-white hover:text-gray-200 px-3 py-2 rounded-md text-sm font-medium flex items-center gap-2"
-            >
-              <Mail className="h-4 w-4" />
-              Contact Us
-            </Link>
-            <Link 
-              to="/forum" 
-              className="text-white hover:text-gray-200 px-3 py-2 rounded-md text-sm font-medium flex items-center gap-2"
-            >
-              <MessageSquare className="h-4 w-4" />
-              Forum
-            </Link>
-            <Link 
-              to="/leaderboard" 
-              className="text-white hover:text-gray-200 px-3 py-2 rounded-md text-sm font-medium flex items-center gap-2"
-            >
-              <Trophy className="h-4 w-4" />
-              Leaderboard
-            </Link>
+            <div className="flex space-x-8">
+              <Link 
+                to="/" 
+                className="text-white hover:text-gray-200 px-3 py-2 rounded-md text-sm font-medium flex items-center gap-2"
+              >
+                <Home className="h-4 w-4" />
+                Home
+              </Link>
+              <Link 
+                to="/about" 
+                className="text-white hover:text-gray-200 px-3 py-2 rounded-md text-sm font-medium flex items-center gap-2"
+              >
+                <Info className="h-4 w-4" />
+                About
+              </Link>
+              <Link 
+                to="/contact" 
+                className="text-white hover:text-gray-200 px-3 py-2 rounded-md text-sm font-medium flex items-center gap-2"
+              >
+                <Mail className="h-4 w-4" />
+                Contact Us
+              </Link>
+              <Link 
+                to="/forum" 
+                className="text-white hover:text-gray-200 px-3 py-2 rounded-md text-sm font-medium flex items-center gap-2"
+              >
+                <MessageSquare className="h-4 w-4" />
+                Forum
+              </Link>
+              <Link 
+                to="/leaderboard" 
+                className="text-white hover:text-gray-200 px-3 py-2 rounded-md text-sm font-medium flex items-center gap-2"
+              >
+                <Trophy className="h-4 w-4" />
+                Leaderboard
+              </Link>
+            </div>
           </div>
 
           <div className="flex items-center">
