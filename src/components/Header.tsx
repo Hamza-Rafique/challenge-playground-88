@@ -8,7 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { UserRound, LogOut, MessageSquare, Trophy } from "lucide-react";
+import { UserRound, LogOut, MessageSquare, Trophy, Home, Info, Mail } from "lucide-react";
 import { useToast } from "./ui/use-toast";
 import { useState, useEffect } from "react";
 
@@ -58,20 +58,23 @@ const Header = () => {
           <div className="flex space-x-8 items-center">
             <Link 
               to="/" 
-              className="text-white hover:text-gray-200 px-3 py-2 rounded-md text-sm font-medium"
+              className="text-white hover:text-gray-200 px-3 py-2 rounded-md text-sm font-medium flex items-center gap-2"
             >
+              <Home className="h-4 w-4" />
               Home
             </Link>
             <Link 
               to="/about" 
-              className="text-white hover:text-gray-200 px-3 py-2 rounded-md text-sm font-medium"
+              className="text-white hover:text-gray-200 px-3 py-2 rounded-md text-sm font-medium flex items-center gap-2"
             >
+              <Info className="h-4 w-4" />
               About
             </Link>
             <Link 
               to="/contact" 
-              className="text-white hover:text-gray-200 px-3 py-2 rounded-md text-sm font-medium"
+              className="text-white hover:text-gray-200 px-3 py-2 rounded-md text-sm font-medium flex items-center gap-2"
             >
+              <Mail className="h-4 w-4" />
               Contact Us
             </Link>
             <Link 
